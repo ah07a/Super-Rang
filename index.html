@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Super Rang Auto Mechanic Garage | Al Ain</title>
+<meta name="description" content="Expert auto repair and maintenance in Al Ain. Mechanical, electrical, denting and painting services. Call +971 55 990 2147.">
+<meta name="theme-color" content="#1A1A1A">
+
+<meta property="og:title" content="Super Rang Auto Mechanic Garage | Al Ain">
+<meta property="og:description" content="Expert auto repair and maintenance in Al Ain. Mechanical, electrical, denting and painting services. Call +971 55 990 2147.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://superrang.netlify.app/">
+<meta property="og:image" content="https://superrang.netlify.app/images/hero.jpg">
+<meta property="og:locale" content="en_AE">
+<meta property="og:locale:alternate" content="ar_AE">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+
+<script>
+/* Runs before first paint. Sets the js flag so reveal elements start
+   hidden rather than rendering visible and then flashing out, and
+   restores the language so RTL never flashes as LTR. */
+(function () {
+  var r = document.documentElement;
+  r.className += ' js';
+  try {
+    if (localStorage.getItem('sr-lang') === 'ar') {
+      r.lang = 'ar'; r.dir = 'rtl'; r.className += ' ar';
+    }
+  } catch (e) {}
+})();
+</script>
+
+<style>
+/* ---------------------------------------------------------------
+   TOKENS
+   Light page, dark bookends. The signboard gold survives as the
+   accent, but gold TEXT on white is 1.8:1 so it switches to the
+   darker --accent-ink wherever it has to be read.
+   --------------------------------------------------------------- */
+:root {
+  --bg:           #FFFFFF;
+  --bg-alt:       #F4F4F2;   /* warm grey band */
+  --bg-deep:      #1A1A1A;   /* hero wash, footer */
+  --text:         #111111;
+  --muted:        #6B6B66;   /* clears 4.5:1 on the grey band, not just on white */
+  --line:         #E5E5E3;
+
+  --accent:       #EAB308;   /* rules, borders, icons. never text on white */
+  --accent-hover: #CA9A06;
+  --accent-ink:   #8F5806;   /* gold text, 5.3:1 on the grey band */
+
+  --white:        #F8FAFC;   /* text on the dark bookends */
+
+  /* Darkened so white label text clears 4.5:1. Brand green lives on
+     in the glow only. */
+  --wa:           #0D8341;
+  --wa-hover:     #0A6B34;
+  --wa-glow:      rgba(37, 211, 102, .35);
+
+  /* Light glass, for the header sitting on a light page. */
+  --glass-bg:     rgba(255, 255, 255, .82);
+  --glass-blur:   blur(14px) saturate(140%);
+
+  --shadow-sm:
+      0 1px 2px rgba(17, 17, 17, .05),
+      0 4px 12px rgba(17, 17, 17, .06);
+  --shadow-md:
+      0 2px 4px rgba(17, 17, 17, .06),
+      0 12px 32px rgba(17, 17, 17, .10),
+      0 0 0 1px rgba(234, 179, 8, .10);
+
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 24px;
+  --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px;
+
+  --header-h: 60px;
+  --radius:   6px;
+
+  --font-display: 'Barlow Condensed', 'Noto Sans Arabic', sans-serif;
+  --font-body:    'Barlow', 'Noto Sans Arabic', sans-serif;
+
+  --ease: cubic-bezier(.2, .7, .3, 1);
+}
+
+html.ar {
+  --font-display: 'Noto Sans Arabic', 'Barlow Condensed', sans-serif;
+  --font-body:    'Noto Sans Arabic', 'Barlow', sans-serif;
+}
+/* Condensed Latin display sets tight at 1.05. Arabic does not: the same
+   value clips descenders into the line below. */
+html.ar h1, html.ar h2, html.ar h3 { line-height: 1.4; }
+
+/* ---------------------------------------------------------------
+   RESET
+   --------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { margin: 0; font-family: var(--font-display); font-weight: 700; line-height: 1.05; }
+p  { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+img { display: block; max-width: 100%; }
+svg { display: block; }
+a  { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+iframe { border: 0; }
+
+:where(a, button):focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 3px;
+  border-radius: var(--radius);
+}
+.on-dark :where(a, button):focus-visible { outline-color: var(--accent); }
+
+.wrap { width: 100%; max-width: 1160px; margin-inline: auto; padding-inline: var(--s-5); }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------------------------------------------------------------
+   SCROLL REVEAL
+   Transform and opacity only. Anything that reveals must also be
+   readable with JS off, so the no-js state is the revealed state.
+   --------------------------------------------------------------- */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
+  will-change: opacity, transform;
+}
+.js .reveal.in { opacity: 1; transform: none; will-change: auto; }
+/* Children of a staggered container come in one after another. */
+.js .stagger > *:nth-child(1) { transition-delay: 0ms; }
+.js .stagger > *:nth-child(2) { transition-delay: 70ms; }
+.js .stagger > *:nth-child(3) { transition-delay: 140ms; }
+.js .stagger > *:nth-child(4) { transition-delay: 210ms; }
+.js .stagger > *:nth-child(5) { transition-delay: 280ms; }
+.js .stagger > *:nth-child(6) { transition-delay: 350ms; }
+.js .stagger > *:nth-child(7) { transition-delay: 420ms; }
+
+/* ---------------------------------------------------------------
+   TEXT LOGO  (no logo file exists, the signboard is the logo)
+   --------------------------------------------------------------- */
+.logo { display: block; line-height: 1; }
+.logo-name, .logo-sub { display: block; }
+.logo-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  font-size: 21px;
+}
+.logo-sub {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--accent-ink);
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  font-size: 9px;
+  margin-top: 2px;
+}
+.on-dark .logo-name { color: var(--white); }
+.on-dark .logo-sub  { color: var(--accent); }
+html.ar .logo-name,
+html.ar .logo-sub { text-transform: none; letter-spacing: normal; }
+html.ar .logo-name { line-height: 1.2; }
+html.ar .logo-sub { font-size: 11px; line-height: 1.2; margin-top: 0; }
+
+/* ---------------------------------------------------------------
+   HEADER
+   --------------------------------------------------------------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--line);
+}
+.header-in {
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+}
+.header-actions { display: flex; align-items: center; gap: var(--s-2); }
+
+/* Nav is a dropdown panel on phones, an inline row from 900px up. */
+.nav {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  display: none;
+  flex-direction: column;
+  padding: var(--s-2) var(--s-5) var(--s-5);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.nav.open { display: flex; }
+.nav a {
+  padding-block: var(--s-3);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  transition: color .2s var(--ease);
+}
+.nav a:hover { color: var(--accent-ink); }
+.nav .nav-phone { border-bottom: 0; color: var(--accent-ink); }
+html.ar .nav a { text-transform: none; letter-spacing: normal; }
+
+.btn-menu {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: background-color .2s var(--ease), border-color .2s var(--ease);
+}
+.btn-menu svg { width: 20px; height: 20px; stroke: var(--text); stroke-width: 2; }
+.btn-menu:hover { background: var(--bg-alt); border-color: #D6D6D3; }
+
+.header-phone {
+  display: none;
+  align-items: center;
+  gap: var(--s-2);
+  font-weight: 500;
+  font-size: 15px;
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--radius);
+  transition: color .2s var(--ease);
+}
+.header-phone svg { width: 16px; height: 16px; stroke: var(--accent-ink); }
+.header-phone:hover { color: var(--accent-ink); }
+
+.btn-wa-sm {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  background: var(--wa);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  padding: 11px var(--s-3);
+  border-radius: var(--radius);
+  transition: background-color .2s var(--ease), transform .2s var(--ease);
+}
+.btn-wa-sm svg { width: 16px; height: 16px; fill: currentColor; }
+.btn-wa-sm:hover { background: var(--wa-hover); transform: translateY(-1px); }
+.btn-wa-sm:active { transform: translateY(0); }
+@media (max-width: 479px) {
+  .btn-wa-sm { padding: 11px; }
+  .btn-wa-sm span {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+  }
+}
+
+.btn-lang {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--accent-ink);
+  padding: 11px var(--s-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: background-color .2s var(--ease), border-color .2s var(--ease);
+}
+.btn-lang:hover { background: var(--bg-alt); border-color: #D6D6D3; }
+
+/* ---------------------------------------------------------------
+   HERO  (dark bookend, content flush to the start edge)
+   --------------------------------------------------------------- */
+.hero {
+  position: relative;
+  min-height: calc(100vh - var(--header-h));
+  min-height: calc(100svh - var(--header-h));
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  background: var(--bg-deep);
+  color: var(--white);
+}
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-wash {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 45%, rgba(234, 179, 8, .10), transparent 70%),
+    linear-gradient(180deg,
+      rgba(26, 26, 26, .72) 0%,
+      rgba(26, 26, 26, .58) 50%,
+      rgba(26, 26, 26, .86) 100%);
+}
+/* In LTR the photo reads better with the text side darkened further. */
+.hero-wash::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(26, 26, 26, .55), transparent 62%);
+}
+html[dir="rtl"] .hero-wash::after {
+  background: linear-gradient(to left, rgba(26, 26, 26, .55), transparent 62%);
+}
+
+.hero-in {
+  position: relative;
+  text-align: start;
+  padding-block: var(--s-8);
+  max-width: 640px;
+}
+.hero h1 {
+  font-size: clamp(40px, 10vw, 72px);
+  text-transform: uppercase;
+  letter-spacing: -.01em;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, .5);
+}
+.hero-sub {
+  margin-top: var(--s-3);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(14px, 3vw, 20px);
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: .22em;
+}
+.hero-rule {
+  width: 64px;
+  height: 3px;
+  background: var(--accent);
+  margin-block: var(--s-5);
+}
+.hero-tag {
+  font-size: clamp(16px, 2.5vw, 20px);
+  line-height: 1.7;
+  color: rgba(248, 250, 252, .82);
+  max-width: 46ch;
+}
+html.ar .hero h1,
+html.ar .hero-sub { text-transform: none; letter-spacing: normal; }
+
+.hero-cta { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-6); }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1;
+  padding: 15px var(--s-5);
+  border-radius: 999px;
+  transition: background-color .2s var(--ease), transform .2s var(--ease), box-shadow .2s var(--ease);
+}
+.btn svg { width: 18px; height: 18px; }
+.btn-call {
+  background: var(--accent);
+  color: var(--bg-deep);
+  box-shadow: 0 4px 14px rgba(234, 179, 8, .28);
+}
+.btn-call svg { stroke: var(--bg-deep); }
+.btn-call:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(234, 179, 8, .36); }
+.btn-call:active { transform: translateY(0); }
+.btn-wa {
+  background: var(--wa);
+  color: #fff;
+  box-shadow: 0 4px 14px var(--wa-glow);
+}
+.btn-wa svg { fill: currentColor; }
+.btn-wa:hover { background: var(--wa-hover); transform: translateY(-2px); box-shadow: 0 8px 22px var(--wa-glow); }
+.btn-wa:active { transform: translateY(0); }
+
+/* ---------------------------------------------------------------
+   SECTION FURNITURE
+   --------------------------------------------------------------- */
+.section { padding-block: var(--s-8); scroll-margin-top: var(--header-h); }
+.section-alt { background: var(--bg-alt); }
+.section-head { max-width: 720px; }
+.section-head h2 {
+  font-size: clamp(28px, 6vw, 44px);
+  text-transform: uppercase;
+  letter-spacing: .01em;
+}
+.section-head h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  background: var(--accent);
+  margin-top: var(--s-4);
+}
+.head-ar {
+  margin-top: var(--s-2);
+  font-family: 'Noto Sans Arabic', sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--muted);
+  text-align: left;
+}
+html.ar .head-ar { display: none; }
+html.ar .section-head h2 { text-transform: none; letter-spacing: normal; }
+.section-intro { margin-top: var(--s-5); color: var(--muted); font-size: 17px; }
+
+/* ---------------------------------------------------------------
+   ABOUT
+   --------------------------------------------------------------- */
+.about-body { margin-top: var(--s-5); max-width: 68ch; display: grid; gap: var(--s-4); }
+.about-body p { color: var(--muted); font-size: 17px; }
+
+/* ---------------------------------------------------------------
+   SERVICE SECTIONS
+   One per category. Banner photo, then the sub-services as a
+   two column list. No numbering: these are not a sequence.
+   --------------------------------------------------------------- */
+.svc-media {
+  margin-top: var(--s-6);
+  height: 260px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-md);
+}
+.svc-media img { width: 100%; height: 100%; object-fit: cover; }
+/* Colour treatment pulls three photos of different temperature together. */
+.svc-media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(160deg, rgba(234, 179, 8, .14), rgba(26, 26, 26, .3));
+  mix-blend-mode: multiply;
+}
+/* No bottom scrim here: unlike the old cards, nothing sits on top of
+   these banners, so darkening the lower half has nothing to serve. */
+
+.svc-list { margin-top: var(--s-7); display: grid; gap: var(--s-6) var(--s-7); }
+.svc-list > li { border-top: 2px solid var(--accent); padding-top: var(--s-4); }
+.svc-list h3 {
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+.svc-ar {
+  margin-top: var(--s-1);
+  font-family: 'Noto Sans Arabic', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+  text-align: left;
+}
+html.ar .svc-ar { display: none; }
+html.ar .svc-list h3 { text-transform: none; letter-spacing: normal; }
+.svc-list p { margin-top: var(--s-3); color: var(--muted); font-size: 15px; }
+
+/* ---------------------------------------------------------------
+   REVIEWS
+   --------------------------------------------------------------- */
+.reviews-grid { margin-top: var(--s-7); display: grid; gap: var(--s-5); }
+.review {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--s-5);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+.section-alt .review { background: var(--bg); }
+.review-quote { font-size: 16px; color: var(--text); }
+/* Opening mark only. A closing mark after the full stop reads as a
+   stray glyph rather than as punctuation. */
+.review-quote::before {
+  content: "\201C";
+  color: var(--accent);
+  font-size: 28px;
+  line-height: 0;
+  vertical-align: -6px;
+  margin-inline-end: 2px;
+}
+.review-meta { margin-top: auto; padding-top: var(--s-3); border-top: 1px solid var(--line); }
+.review-name { font-weight: 600; font-size: 15px; }
+.review-svc {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+html.ar .review-svc { text-transform: none; letter-spacing: normal; }
+
+/* ---------------------------------------------------------------
+   LOCATION & HOURS
+   --------------------------------------------------------------- */
+.loc-grid { display: grid; gap: var(--s-5); margin-top: var(--s-7); }
+.map {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 320px;
+  box-shadow: var(--shadow-sm);
+}
+.map iframe { width: 100%; height: 100%; min-height: 320px; display: block; }
+
+.hours h3 {
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  padding-inline-start: var(--s-3);
+  border-inline-start: 3px solid var(--accent);
+}
+html.ar .hours h3 { text-transform: none; letter-spacing: normal; }
+
+.hours-list { margin-top: var(--s-4); border-top: 1px solid var(--line); }
+.hours-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-4);
+  padding-block: var(--s-3);
+  border-bottom: 1px solid var(--line);
+}
+.hours-list .lbl { color: var(--muted); font-size: 15px; }
+.hours-list .val { font-weight: 600; font-variant-numeric: tabular-nums; }
+.hours-list .closed { color: var(--muted); font-weight: 500; }
+
+.note {
+  margin-top: var(--s-5);
+  padding: var(--s-4);
+  background: rgba(234, 179, 8, .09);
+  border-inline-start: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 15px;
+  color: #3F3210;
+}
+html[dir="rtl"] .note { border-radius: var(--radius) 0 0 var(--radius); }
+
+.address { margin-top: var(--s-5); display: flex; gap: var(--s-3); align-items: flex-start; }
+.address svg { width: 18px; height: 18px; stroke: var(--accent-ink); flex: none; margin-top: 4px; }
+.address p { color: var(--muted); font-size: 15px; }
+.directions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: var(--s-2);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--accent-ink);
+  border-bottom: 1px solid rgba(143, 88, 6, .4);
+  padding-bottom: 2px;
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+.directions svg { width: 16px; height: 16px; stroke: currentColor; transition: transform .2s var(--ease); }
+.directions:hover { color: #6E4405; border-color: #6E4405; }
+.directions:hover svg { transform: translateX(3px); }
+html[dir="rtl"] .directions svg { transform: scaleX(-1); }
+html[dir="rtl"] .directions:hover svg { transform: scaleX(-1) translateX(3px); }
+
+/* ---------------------------------------------------------------
+   FOOTER  (dark bookend)
+   --------------------------------------------------------------- */
+.footer {
+  background: var(--bg-deep);
+  color: var(--white);
+  border-top: 3px solid var(--accent);
+  padding-block: var(--s-8) var(--s-9);
+}
+.footer-grid { display: grid; gap: var(--s-6); }
+.footer .logo-name { font-size: 28px; }
+.footer .logo-sub { font-size: 11px; }
+.footer-contact { display: grid; gap: var(--s-3); }
+.footer-contact a, .footer-contact div {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  color: rgba(248, 250, 252, .84);
+  font-size: 15px;
+  transition: color .2s var(--ease);
+}
+.footer-contact svg { width: 18px; height: 18px; flex: none; margin-top: 3px; }
+.footer-contact .ico-stroke { stroke: var(--accent); }
+.footer-contact .ico-fill { fill: var(--accent); }
+.footer-contact a:hover { color: var(--accent); }
+.footer-bottom {
+  margin-top: var(--s-7);
+  padding-top: var(--s-5);
+  border-top: 1px solid rgba(248, 250, 252, .1);
+  font-size: 13px;
+  color: rgba(248, 250, 252, .6);
+}
+
+/* ---------------------------------------------------------------
+   FLOATING WHATSAPP
+   --------------------------------------------------------------- */
+.fab {
+  position: fixed;
+  z-index: 60;
+  bottom: 20px;
+  inset-inline-end: 20px;
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--wa);
+  border: 1px solid rgba(255, 255, 255, .2);
+  box-shadow: 0 4px 16px var(--wa-glow);
+  transition: transform .22s var(--ease), background-color .22s var(--ease), box-shadow .22s var(--ease);
+}
+.fab svg { width: 30px; height: 30px; fill: #fff; }
+.fab:hover {
+  transform: scale(1.08);
+  background: var(--wa-hover);
+  box-shadow: 0 6px 22px rgba(37, 211, 102, .5);
+}
+.fab:active { transform: scale(1.02); }
+
+/* No backdrop-filter means an opaque header, never a see through bar. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .header { background: var(--bg); }
+}
+
+/* ---------------------------------------------------------------
+   BREAKPOINTS
+   --------------------------------------------------------------- */
+@media (min-width: 640px) {
+  .svc-media { height: 340px; }
+  .svc-list { grid-template-columns: repeat(2, 1fr); }
+  .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 768px) {
+  :root { --header-h: 70px; }
+  .section { padding-block: var(--s-9); }
+  .logo-name { font-size: 24px; }
+  .logo-sub { font-size: 10px; }
+  .header-phone { display: inline-flex; }
+  .header-actions { gap: var(--s-3); }
+  .hero-in { padding-block: var(--s-9); }
+  .svc-media { height: 420px; }
+  .loc-grid { grid-template-columns: 1.05fr .95fr; gap: var(--s-7); align-items: stretch; }
+  .map { min-height: 100%; }
+  .map iframe { min-height: 420px; height: 100%; }
+  .footer-grid { grid-template-columns: 1fr auto; align-items: start; }
+  .fab { bottom: 28px; inset-inline-end: 28px; }
+}
+
+@media (min-width: 900px) {
+  /* Nav becomes an inline row and the menu button retires. */
+  .btn-menu { display: none; }
+  .nav {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--s-5);
+    padding: 0;
+    background: none;
+    border: 0;
+    box-shadow: none;
+  }
+  .nav a { padding-block: 0; border-bottom: 0; font-size: 15px; }
+  .nav .nav-phone { display: none; }
+  .reviews-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ---------------------------------------------------------------
+   REDUCED MOTION
+   --------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+  .js .reveal { opacity: 1; transform: none; }
+  .btn:hover, .btn-wa-sm:hover, .fab:hover { transform: none; }
+  .directions:hover svg { transform: none; }
+  html[dir="rtl"] .directions svg,
+  html[dir="rtl"] .directions:hover svg { transform: scaleX(-1); }
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "name": "Super Rang Auto Mechanic Garage",
+  "alternateName": "سوبر رينج، كراج لتصليح ميكانيكا السيارات",
+  "description": "Expert auto repair and maintenance in Al Ain. Mechanical, electrical, denting and painting services.",
+  "url": "https://superrang.netlify.app/",
+  "image": "https://superrang.netlify.app/images/hero.jpg",
+  "telephone": "+971559902147",
+  "priceRange": "$$",
+  "hasMap": "https://maps.app.goo.gl/4YVH1hu5T7zzE26g6",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Al Ain",
+    "addressRegion": "Abu Dhabi",
+    "addressCountry": "AE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 24.176472,
+    "longitude": 55.765833
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+      "opens": "08:30",
+      "closes": "13:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+      "opens": "16:30",
+      "closes": "22:00"
+    }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Auto repair services",
+    "itemListElement": [
+      {
+        "@type": "OfferCatalog",
+        "name": "Mechanical Work",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Engine Repair" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Oil and Filter Change" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brake Service" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Suspension" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Transmission" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AC Service" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Radiator and Cooling" } }
+        ]
+      },
+      {
+        "@type": "OfferCatalog",
+        "name": "Electrical Work",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Battery Service" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Alternator Repair" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Starter Motor" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wiring Diagnostics" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Headlights and Taillights" } }
+        ]
+      },
+      {
+        "@type": "OfferCatalog",
+        "name": "Denting and Painting",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dent Removal" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Full Body Respray" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Scratch Repair" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bumper Repair" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Color Matching" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Accident Damage" } }
+        ]
+      }
+    ]
+  }
+}
+</script>
+<!--
+  aggregateRating and review are deliberately absent from the schema.
+  The testimonials on this page are PLACEHOLDER COPY. Putting invented
+  review data into structured data is a claim made to Google and
+  violates their review snippet policy. Add both only when the Google
+  Business Profile is live and the reviews are real.
+-->
+</head>
+
+<body>
+
+<header class="header">
+  <div class="wrap header-in">
+    <a class="logo" href="#top" aria-label="Super Rang Auto Mechanic Garage">
+      <span class="logo-name" data-en="Super Rang" data-ar="سوبر رينج">Super Rang</span>
+      <span class="logo-sub" data-en="Auto Mechanic Garage" data-ar="كراج لتصليح السيارات">Auto Mechanic Garage</span>
+    </a>
+
+    <nav class="nav" id="siteNav" aria-label="Services">
+      <a href="#mechanical" data-en="Mechanical Work" data-ar="أعمال ميكانيكية">Mechanical Work</a>
+      <a href="#electrical" data-en="Electrical Work" data-ar="أعمال كهربائية">Electrical Work</a>
+      <a href="#painting" data-en="Denting &amp; Painting" data-ar="سمكرة ودهان">Denting &amp; Painting</a>
+      <a class="nav-phone" href="tel:+971559902147" dir="ltr">+971 55 990 2147</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-phone" href="tel:+971559902147">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span dir="ltr">+971 55 990 2147</span>
+      </a>
+
+      <a class="btn-wa-sm" href="https://wa.me/971559902147" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 5.82 2.42 8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43l-.47-.01c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+        <span data-en="WhatsApp" data-ar="واتساب">WhatsApp</span>
+      </a>
+
+      <button class="btn-lang" id="langBtn" type="button" dir="auto"
+              data-en="عربي" data-ar="English"
+              data-aria-en="Switch to Arabic" data-aria-ar="Switch to English"
+              aria-label="Switch to Arabic">عربي</button>
+
+      <button class="btn-menu" id="menuBtn" type="button"
+              aria-expanded="false" aria-controls="siteNav"
+              data-aria-en="Open services menu" data-aria-ar="افتح قائمة الخدمات"
+              aria-label="Open services menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero on-dark">
+    <img class="hero-img" src="images/hero.jpg" alt="Car raised on a hydraulic lift inside the Super Rang workshop in Al Ain" loading="eager" fetchpriority="high" width="1600" height="873">
+    <div class="hero-wash" aria-hidden="true"></div>
+
+    <div class="wrap hero-in">
+      <h1 data-en="Super Rang" data-ar="سوبر رينج">Super Rang</h1>
+      <p class="hero-sub" data-en="Auto Mechanic Garage" data-ar="كراج لتصليح السيارات">Auto Mechanic Garage</p>
+      <div class="hero-rule" aria-hidden="true"></div>
+      <p class="hero-tag"
+         data-en="Expert auto repair and maintenance in Al Ain. Mechanical, electrical, denting and painting services you can count on."
+         data-ar="إصلاح وصيانة السيارات بخبرة في العين. خدمات ميكانيكية وكهربائية وسمكرة ودهان يمكنك الاعتماد عليها.">Expert auto repair and maintenance in Al Ain. Mechanical, electrical, denting and painting services you can count on.</p>
+
+      <div class="hero-cta">
+        <a class="btn btn-call" href="tel:+971559902147">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span data-en="Call Now" data-ar="اتصل الآن">Call Now</span>
+        </a>
+        <a class="btn btn-wa" href="https://wa.me/971559902147" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 5.82 2.42 8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43l-.47-.01c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+          <span data-en="WhatsApp" data-ar="واتساب">WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 data-en="About the Garage" data-ar="عن الكراج">About the Garage</h2>
+        <p class="head-ar" lang="ar" dir="rtl">عن الكراج</p>
+      </div>
+      <div class="about-body reveal">
+        <p data-en="Super Rang is a working garage in Al Ain. Mechanical, electrical, denting and painting all happen under one roof, which means a car that arrives with three problems leaves with three problems fixed, not three appointments at three different places."
+           data-ar="سوبر رينج كراج عامل في مدينة العين. الأعمال الميكانيكية والكهربائية والسمكرة والدهان كلها تتم تحت سقف واحد، ما يعني أن السيارة التي تدخل بثلاث مشاكل تخرج بثلاث مشاكل محلولة، لا بثلاثة مواعيد في ثلاثة أماكن مختلفة.">Super Rang is a working garage in Al Ain. Mechanical, electrical, denting and painting all happen under one roof, which means a car that arrives with three problems leaves with three problems fixed, not three appointments at three different places.</p>
+        <p data-en="We work six days a week on a split shift, morning and evening. Call ahead or send a WhatsApp and we will tell you honestly whether it is a same day job or something that needs the car left with us."
+           data-ar="نعمل ستة أيام في الأسبوع بفترتين، صباحية ومسائية. اتصل بنا أو أرسل رسالة واتساب وسنخبرك بصراحة إن كان العمل ينتهي في نفس اليوم أو يحتاج إلى ترك السيارة لدينا.">We work six days a week on a split shift, morning and evening. Call ahead or send a WhatsApp and we will tell you honestly whether it is a same day job or something that needs the car left with us.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MECHANICAL -->
+  <section class="section section-alt" id="mechanical">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 data-en="Mechanical Work" data-ar="أعمال ميكانيكية">Mechanical Work</h2>
+        <p class="head-ar" lang="ar" dir="rtl">أعمال ميكانيكية</p>
+        <p class="section-intro"
+           data-en="The core of what we do. Diagnosis, repair and routine maintenance for the systems that keep your car moving."
+           data-ar="جوهر عملنا. تشخيص وإصلاح وصيانة دورية للأنظمة التي تبقي سيارتك تسير.">The core of what we do. Diagnosis, repair and routine maintenance for the systems that keep your car moving.</p>
+      </div>
+
+      <div class="svc-media reveal">
+        <img src="images/mechanical.jpg" alt="Mechanic working on an engine bay with a socket wrench" loading="lazy" width="1600" height="873">
+      </div>
+
+      <ul class="svc-list">
+        <li class="reveal">
+          <h3 data-en="Engine Repair" data-ar="إصلاح المحرك">Engine Repair</h3>
+          <p class="svc-ar" lang="ar" dir="rtl">إصلاح المحرك</p>
+          <p data-en="From rough idling and warning lights to full overhauls. We diagnose the fault first, explain what it will take, and only then start work."
+             data-ar="من الاهتزاز عند التشغيل وأضواء التحذير إلى الإصلاح الكامل. نشخص العطل أولاً، ونشرح ما يتطلبه، ثم نبدأ العمل.">From rough idling and warning lights to full overhauls. We diagnose the fault first, explain what it will take, and only then start work.</p>
+        </li>
+        <li class="reveal">
+          <h3 data-en="Oil &amp; Filter Change" data-ar="تغيير الزيت والفلتر">Oil &amp; Filter Change</h3>
+          <p class="svc-ar" lang="ar" dir="rtl">تغيير الزيت والفلتر</p>
+          <p data-en="Engine oil, oil filter, air filter and cabin filter. We match the grade to your vehicle and log the mileage so you know when the next one is due."
+             data-ar="زيت المحرك وفلتر الزيت وفلتر الهواء وفلتر المقصورة. نختار الدرجة المناسبة لسيارتك ونسجل عداد المسافة لتعرف موعد التغيير القادم.">Engine oil, oil filter, air filter and cabin filter. We match the grade to your vehicle and log the mileage so you know when the next one is due.</p>
+        </li>
+        <li class="reveal">
+          <h3 data-en="Brake Service" data-ar="خدمة الفرامل">Brake Service</h3>
+          <p class="svc-ar" lang="ar" dir="rtl">خدمة الفرامل</p>
+          <p data-en="Pads, discs, brake fluid and handbrake adjustment. If you hear grinding or the pedal feels soft, bring it in before it turns into an expensive job."
+             data-ar="الفحمات والأقراص وزيت الفرامل وضبط فرامل اليد. إذا سمعت صوت احتكاك أو شعرت بليونة الدواسة، أحضرها قبل أن تتحول إلى إصلاح مكلف.">Pads, discs, brake fluid and handbrake adjustment. If you hear grinding or the pedal feels soft, bring it in before it turns into an expensive job.</p>
+        </li>
+        <li class="reveal">
+          <h3 data-en="Suspension" data-ar="نظام التعليق">Suspension</h3>
+          <p class="svc-ar" lang="ar" dir="rtl">نظام التعليق</p>
+          <p data-en="Shock absorbers, bushes, ball joints and springs. Al Ain roads and speed bumps are hard on suspension, and worn parts wear out your tyres too."
+             data-ar="المساعدات والجلب والبيلوات والزنبركات. طرق العين والمطبات قاسية على نظام التعليق، والأجزاء التالفة تستهلك الإطارات أيضاً.">Shock absorbers, bushes, ball joints and springs. Al Ain roads and speed bumps are hard on suspension, and worn parts wear out your tyres too.</p>
+        </li>
+        <li class="reveal">
+          <h3 data-en="Transmission" data-ar="ناقل الحركة">Transmission</h3>
+          <p class="svc-ar" lang="ar" dir="rtl">ناقل الحركة</p>
+          <p data-en="Automatic and manual gearbox work, fluid service and clutch replacement. Slipping gears and delayed engagement are the signs to watch for."
+             data-ar="أعمال ناقل الحركة الأوتوماتيكي واليدوي، وتغيير الزيت، وتبديل الدبرياج. انزلاق التروس وتأخر الاستجابة هي العلامات التي يجب الانتباه لها.">Automatic and manual gearbox work, fluid service and clutch replacement. Slipping gears and delayed engagement are the signs to watch for.</p>
+        </li>
+        <li class="reveal">
+          <h3 data-en="AC Service" data-ar="خدمة التكييف">AC Service</h3>
+          <p class="svc-ar" lang="ar" dir="rtl">خدمة التكييف</p>
+          <p data-en="Regas, compressor and condenser repair, and leak tracing. In an Al Ain summer a working air conditioner is not a comfort, it is a necessity."
+             data-ar="تعبئة الغاز وإصلاح الكمبروسر والمكثف وتتبع التسريبات. في صيف العين، التكييف العامل ليس رفاهية بل ضرورة.">Regas, compressor and condenser repair, and leak tracing. In an Al Ain summer a working air conditioner is not a comfort, it is a necessity.</p>
+        </li>
+        <li class="reveal">
+          <h3 data-en="Radiator &amp; Cooling" data-ar="المبرد والتبريد">Radiator &amp; Cooling</h3>
+          <p class="svc-ar" lang="ar" dir="rtl">المبرد والتبريد</p>
+          <p data-en="Radiators, water pumps, thermostats and hoses. Overheating damages an engine quickly, so a rising temperature gauge is worth stopping for."
+             data-ar="الردياتير وطرمبة الماء والثرموستات والخراطيم. السخونة الزائدة تتلف المحرك بسرعة، لذا ارتفاع مؤشر الحرارة يستحق التوقف فوراً.">Radiators, water pumps, thermostats and hoses. Overheating damages an engine quickly, so a rising temperature gauge is worth stopping for.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ELECTRICAL -->
+  <section class="section" id="electrical">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 data-en="Electrical Work" data-ar="أعمال كهربائية">Electrical Work</h2>
+        <p class="head-ar" lang="ar" dir="rtl">أعمال كهربائية</p>
+        <p class="section-intro"
+           data-en="Modern cars are as much wiring as they are metal. We trace faults properly instead of swapping parts and hoping."
+           data-ar="السيارات الحديثة أسلاك بقدر ما هي معدن. نتتبع الأعطال بشكل صحيح بدلاً من تبديل القطع والأمل.">Modern cars are as much wiring as they are metal. We trace faults properly instead of swapping parts and hoping.</p>
+      </div>
+
+      <div class="svc-media reveal">
+        <img src="images/electrical.jpg" alt="Multimeter testing a car fuse box with wiring exposed" loading="lazy" width="1600" height="893">
+      </div>
+
+      <ul class="svc-list">
+        <li class="reveal">
+          <h3 data-en="Battery Service" data-ar="خدمة البطارية">Battery Service</h3>
+          <p class="svc-ar" lang="ar" dir="rtl">خدمة البطارية</p>
+          <p data-en="Testing, charging, terminal cleaning and replacement. If the car cranks slowly or needs a jump start, the battery is usually telling you something."
+             data-ar="الفحص والشحن وتنظيف الأطراف والتبديل. إذا كانت السيارة تدور ببطء أو تحتاج إلى شحن خارجي، فالبطارية عادة تحاول إخبارك بشيء.">Testing, charging, terminal cleaning and replacement. If the car cranks slowly or needs a jump start, the battery is usually telling you something.</p>
+        </li>
+        <li class="reveal">
+          <h3 data-en="Alternator Repair" data-ar="إصلاح الدينمو">Alternator Repair</h3>
+          <p class="svc-ar" lang="ar" dir="rtl">إصلاح الدينمو</p>
+          <p data-en="Repair and replacement of the alternator and its belt. A battery that keeps going flat is often an alternator that has stopped charging it."
+             data-ar="إصلاح وتبديل الدينمو وسيره. البطارية التي تفرغ باستمرار غالباً ما يكون سببها دينمو توقف عن شحنها.">Repair and replacement of the alternator and its belt. A battery that keeps going flat is often an alternator that has stopped charging it.</p>
+        </li>
+        <li class="reveal">
+          <h3 data-en="Starter Motor" data-ar="موتور التشغيل">Starter Motor</h3>
+          <p class="svc-ar" lang="ar" dir="rtl">موتور التشغيل</p>
+          <p data-en="Starter motors and solenoids, repaired or replaced. A single click when you turn the key usually points here rather than at the battery."
+             data-ar="موتورات التشغيل والسولينويد، إصلاحاً أو تبديلاً. صوت طقة واحدة عند إدارة المفتاح يشير عادة إلى هنا وليس إلى البطارية.">Starter motors and solenoids, repaired or replaced. A single click when you turn the key usually points here rather than at the battery.</p>
+        </li>
+        <li class="reveal">
+          <h3 data-en="Wiring Diagnostics" data-ar="تشخيص الأسلاك">Wiring Diagnostics</h3>
+          <p class="svc-ar" lang="ar" dir="rtl">تشخيص الأسلاك</p>
+          <p data-en="Fault tracing across the loom, fuses, relays and earth points. Intermittent electrical problems take patience, and we take the time to find them."
+             data-ar="تتبع الأعطال في الأسلاك والفيوزات والريليهات ونقاط التأريض. المشاكل الكهربائية المتقطعة تحتاج صبراً، ونحن نأخذ الوقت الكافي لإيجادها.">Fault tracing across the loom, fuses, relays and earth points. Intermittent electrical problems take patience, and we take the time to find them.</p>
+        </li>
+        <li class="reveal">
+          <h3 data-en="Headlights &amp; Taillights" data-ar="المصابيح الأمامية والخلفية">Headlights &amp; Taillights</h3>
+          <p class="svc-ar" lang="ar" dir="rtl">المصابيح الأمامية والخلفية</p>
+          <p data-en="Bulbs, housings, indicators and wiring. We fix the connections behind them too, which is usually the real reason a light keeps failing."
+             data-ar="اللمبات والعواكس والإشارات والأسلاك. نصلح أيضاً التوصيلات خلفها، وهي عادة السبب الحقيقي لمصباح يتعطل باستمرار.">Bulbs, housings, indicators and wiring. We fix the connections behind them too, which is usually the real reason a light keeps failing.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DENTING & PAINTING -->
+  <section class="section section-alt" id="painting">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 data-en="Denting &amp; Painting" data-ar="سمكرة ودهان">Denting &amp; Painting</h2>
+        <p class="head-ar" lang="ar" dir="rtl">سمكرة ودهان</p>
+        <p class="section-intro"
+           data-en="Bodywork and paint, from a car park scrape to putting a vehicle back together after an accident."
+           data-ar="أعمال السمكرة والدهان، من خدش في الموقف إلى إعادة بناء السيارة بعد حادث.">Bodywork and paint, from a car park scrape to putting a vehicle back together after an accident.</p>
+      </div>
+
+      <div class="svc-media reveal">
+        <img src="images/painting.jpg" alt="Car masked with tape in a spray booth being painted with a spray gun" loading="lazy" width="1600" height="1193">
+      </div>
+
+      <ul class="svc-list">
+        <li class="reveal">
+          <h3 data-en="Dent Removal" data-ar="إزالة الانبعاجات">Dent Removal</h3>
+          <p class="svc-ar" lang="ar" dir="rtl">إزالة الانبعاجات</p>
+          <p data-en="Pulling and reshaping panels back to their original line. Where the paint is still intact we work without repainting the panel at all."
+             data-ar="سحب وإعادة تشكيل الأجزاء إلى خطها الأصلي. عندما يكون الدهان سليماً نعمل دون إعادة دهان القطعة إطلاقاً.">Pulling and reshaping panels back to their original line. Where the paint is still intact we work without repainting the panel at all.</p>
+        </li>
+        <li class="reveal">
+          <h3 data-en="Full Body Respray" data-ar="دهان كامل">Full Body Respray</h3>
+          <p class="svc-ar" lang="ar" dir="rtl">دهان كامل</p>
+          <p data-en="Complete resprays in a controlled spray booth. Panels are stripped, prepared and sprayed so the finish is even across the whole car."
+             data-ar="دهان كامل في غرفة رش محكمة. يتم تجهيز الأجزاء وتحضيرها ورشها ليكون اللمعان متساوياً في كامل السيارة.">Complete resprays in a controlled spray booth. Panels are stripped, prepared and sprayed so the finish is even across the whole car.</p>
+        </li>
+        <li class="reveal">
+          <h3 data-en="Scratch Repair" data-ar="إصلاح الخدوش">Scratch Repair</h3>
+          <p class="svc-ar" lang="ar" dir="rtl">إصلاح الخدوش</p>
+          <p data-en="Light scuffs polished out. Deeper scratches are filled, primed and blended into the surrounding paint so the repair does not show."
+             data-ar="الخدوش السطحية تُلمّع. والعميقة تُعبأ وتُؤسّس وتُدمج مع الدهان المحيط بحيث لا يظهر الإصلاح.">Light scuffs polished out. Deeper scratches are filled, primed and blended into the surrounding paint so the repair does not show.</p>
+        </li>
+        <li class="reveal">
+          <h3 data-en="Bumper Repair" data-ar="إصلاح المصد">Bumper Repair</h3>
+          <p class="svc-ar" lang="ar" dir="rtl">إصلاح المصد</p>
+          <p data-en="Cracks, splits and broken mounting points on plastic bumpers repaired rather than replaced wherever the part is still sound."
+             data-ar="الشقوق والتمزقات ونقاط التثبيت المكسورة في المصدات البلاستيكية تُصلح بدلاً من تبديلها طالما القطعة سليمة.">Cracks, splits and broken mounting points on plastic bumpers repaired rather than replaced wherever the part is still sound.</p>
+        </li>
+        <li class="reveal">
+          <h3 data-en="Color Matching" data-ar="مطابقة الألوان">Color Matching</h3>
+          <p class="svc-ar" lang="ar" dir="rtl">مطابقة الألوان</p>
+          <p data-en="We mix to your vehicle's paint code and check the blend against the surrounding panels before anything is sprayed."
+             data-ar="نمزج حسب كود دهان سيارتك ونتحقق من التطابق مع الأجزاء المجاورة قبل بدء الرش.">We mix to your vehicle's paint code and check the blend against the surrounding panels before anything is sprayed.</p>
+        </li>
+        <li class="reveal">
+          <h3 data-en="Accident Damage" data-ar="أضرار الحوادث">Accident Damage</h3>
+          <p class="svc-ar" lang="ar" dir="rtl">أضرار الحوادث</p>
+          <p data-en="Structural straightening, panel replacement and refinishing. We walk you through what needs doing before any work starts."
+             data-ar="تعديل الهيكل وتبديل الأجزاء وإعادة الدهان. نشرح لك ما يحتاج إلى إصلاح قبل بدء أي عمل.">Structural straightening, panel replacement and refinishing. We walk you through what needs doing before any work starts.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!--
+    ============================================================
+    PLACEHOLDER TESTIMONIALS
+    The quotes and names below are written copy, not real customer
+    reviews. The Google Business Profile is not live yet. Replace
+    every entry with genuine feedback before this site is used in
+    production, and do not add star ratings or aggregateRating
+    schema until the reviews are real.
+    ============================================================
+  -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 data-en="What Our Customers Say" data-ar="ماذا يقول عملاؤنا">What Our Customers Say</h2>
+        <p class="head-ar" lang="ar" dir="rtl">ماذا يقول عملاؤنا</p>
+      </div>
+
+      <div class="reviews-grid stagger">
+        <article class="review reveal">
+          <p class="review-quote"
+             data-en="Brought my Patrol in when it started overheating on the way back from Dubai. They found a cracked hose and had it back to me the same evening. Fair price, no surprises."
+             data-ar="أحضرت سيارتي الباترول عندما بدأت تسخن في طريق العودة من دبي. وجدوا خرطوماً متشققاً وأعادوها لي في نفس المساء. سعر عادل وبدون مفاجآت.">Brought my Patrol in when it started overheating on the way back from Dubai. They found a cracked hose and had it back to me the same evening. Fair price, no surprises.</p>
+          <div class="review-meta">
+            <span class="review-name" data-en="Khalid A." data-ar="خالد أ.">Khalid A.</span>
+            <span class="review-svc" data-en="Mechanical Work" data-ar="أعمال ميكانيكية">Mechanical Work</span>
+          </div>
+        </article>
+
+        <article class="review reveal">
+          <p class="review-quote"
+             data-en="I have been servicing two cars here for over a year. They always call before doing anything extra, which is the reason I keep coming back."
+             data-ar="أصلح سيارتين هنا منذ أكثر من سنة. يتصلون دائماً قبل عمل أي شيء إضافي، وهذا سبب عودتي إليهم دائماً.">I have been servicing two cars here for over a year. They always call before doing anything extra, which is the reason I keep coming back.</p>
+          <div class="review-meta">
+            <span class="review-name" data-en="Rashid M." data-ar="راشد م.">Rashid M.</span>
+            <span class="review-svc" data-en="Mechanical Work" data-ar="أعمال ميكانيكية">Mechanical Work</span>
+          </div>
+        </article>
+
+        <article class="review reveal">
+          <p class="review-quote"
+             data-en="My Corolla kept draining its battery and two other places just sold me new batteries. These guys traced it to the alternator in one afternoon."
+             data-ar="كورولا كانت تفرغ البطارية باستمرار، ومحلان آخران باعاني بطاريات جديدة فقط. هؤلاء اكتشفوا أن السبب الدينمو في ظهيرة واحدة.">My Corolla kept draining its battery and two other places just sold me new batteries. These guys traced it to the alternator in one afternoon.</p>
+          <div class="review-meta">
+            <span class="review-name" data-en="Suresh P." data-ar="سوريش ب.">Suresh P.</span>
+            <span class="review-svc" data-en="Electrical Work" data-ar="أعمال كهربائية">Electrical Work</span>
+          </div>
+        </article>
+
+        <article class="review reveal">
+          <p class="review-quote"
+             data-en="Dashboard lights were flickering for months. They took the time to go through the wiring properly instead of guessing, and it was fixed the first time."
+             data-ar="أضواء التابلوه كانت ترفرف لأشهر. أخذوا وقتهم في فحص الأسلاك بشكل صحيح بدلاً من التخمين، وتم الإصلاح من أول مرة.">Dashboard lights were flickering for months. They took the time to go through the wiring properly instead of guessing, and it was fixed the first time.</p>
+          <div class="review-meta">
+            <span class="review-name" data-en="Fatima H." data-ar="فاطمة ح.">Fatima H.</span>
+            <span class="review-svc" data-en="Electrical Work" data-ar="أعمال كهربائية">Electrical Work</span>
+          </div>
+        </article>
+
+        <article class="review reveal">
+          <p class="review-quote"
+             data-en="Someone reversed into my door in a car park. The colour match is perfect. I genuinely cannot tell which panel was repainted."
+             data-ar="أحدهم اصطدم بباب سيارتي في الموقف. مطابقة اللون ممتازة، ولا أستطيع تمييز القطعة التي أعيد دهانها.">Someone reversed into my door in a car park. The colour match is perfect. I genuinely cannot tell which panel was repainted.</p>
+          <div class="review-meta">
+            <span class="review-name" data-en="Omar S." data-ar="عمر س.">Omar S.</span>
+            <span class="review-svc" data-en="Denting &amp; Painting" data-ar="سمكرة ودهان">Denting &amp; Painting</span>
+          </div>
+        </article>
+
+        <article class="review reveal">
+          <p class="review-quote"
+             data-en="Full respray on an older Land Cruiser. It took a week and it came back looking better than I expected for the price."
+             data-ar="دهان كامل للاند كروزر قديمة. استغرق أسبوعاً وعادت أفضل مما توقعت مقابل السعر.">Full respray on an older Land Cruiser. It took a week and it came back looking better than I expected for the price.</p>
+          <div class="review-meta">
+            <span class="review-name" data-en="Ahmed K." data-ar="أحمد ك.">Ahmed K.</span>
+            <span class="review-svc" data-en="Denting &amp; Painting" data-ar="سمكرة ودهان">Denting &amp; Painting</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION & HOURS -->
+  <section class="section section-alt" id="location">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 data-en="Location &amp; Hours" data-ar="الموقع وأوقات العمل">Location &amp; Hours</h2>
+        <p class="head-ar" lang="ar" dir="rtl">الموقع وأوقات العمل</p>
+        <p class="section-intro"
+           data-en="Find us easily in Al Ain. We're open six days a week with morning and evening shifts."
+           data-ar="يمكنك العثور علينا بسهولة في العين. نحن مفتوحون ستة أيام في الأسبوع بفترتين صباحية ومسائية.">Find us easily in Al Ain. We're open six days a week with morning and evening shifts.</p>
+      </div>
+
+      <div class="loc-grid">
+        <div class="map reveal">
+          <iframe
+            title="Map showing Super Rang Auto Mechanic Garage in Al Ain"
+            src="https://www.google.com/maps?q=loc:24.176472,55.765833&amp;z=16&amp;hl=en&amp;output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+
+        <div class="hours reveal">
+          <h3 data-en="Saturday to Thursday" data-ar="السبت إلى الخميس">Saturday to Thursday</h3>
+          <ul class="hours-list">
+            <li>
+              <span class="lbl" data-en="Morning" data-ar="صباحاً">Morning</span>
+              <span class="val" data-en="8:30 AM to 1:30 PM" data-ar="8:30 ص إلى 1:30 م">8:30 AM to 1:30 PM</span>
+            </li>
+            <li>
+              <span class="lbl" data-en="Evening" data-ar="مساءً">Evening</span>
+              <span class="val" data-en="4:30 PM to 10:00 PM" data-ar="4:30 م إلى 10:00 م">4:30 PM to 10:00 PM</span>
+            </li>
+            <li>
+              <span class="lbl" data-en="Friday" data-ar="الجمعة">Friday</span>
+              <span class="val closed" data-en="Closed" data-ar="مغلق">Closed</span>
+            </li>
+          </ul>
+
+          <p class="note"
+             data-en="Split shift schedule. We close between 1:30 PM and 4:30 PM daily."
+             data-ar="جدول مقسم. نغلق يومياً بين الساعة 1:30 ظهراً و 4:30 مساءً.">Split shift schedule. We close between 1:30 PM and 4:30 PM daily.</p>
+
+          <div class="address">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <p data-en="Al Ain, Abu Dhabi, United Arab Emirates" data-ar="العين، أبوظبي، الإمارات العربية المتحدة">Al Ain, Abu Dhabi, United Arab Emirates</p>
+              <a class="directions" href="https://maps.app.goo.gl/4YVH1hu5T7zzE26g6" target="_blank" rel="noopener">
+                <span data-en="Get Directions" data-ar="احصل على الاتجاهات">Get Directions</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer on-dark">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="logo">
+        <span class="logo-name" data-en="Super Rang" data-ar="سوبر رينج">Super Rang</span>
+        <span class="logo-sub" data-en="Auto Mechanic Garage" data-ar="كراج لتصليح السيارات">Auto Mechanic Garage</span>
+      </div>
+
+      <div class="footer-contact">
+        <a href="tel:+971559902147">
+          <svg class="ico-stroke" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span dir="ltr">+971 55 990 2147</span>
+        </a>
+        <a href="https://wa.me/971559902147" target="_blank" rel="noopener">
+          <svg class="ico-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 5.82 2.42 8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43l-.47-.01c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+          <span data-en="WhatsApp" data-ar="واتساب">WhatsApp</span>
+        </a>
+        <div>
+          <svg class="ico-stroke" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span data-en="Al Ain, Abu Dhabi, UAE" data-ar="العين، أبوظبي، الإمارات">Al Ain, Abu Dhabi, UAE</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="footer-bottom"
+       data-en="© 2026 Super Rang Auto Mechanic Garage. All rights reserved."
+       data-ar="© 2026 سوبر رينج، كراج لتصليح السيارات. جميع الحقوق محفوظة.">© 2026 Super Rang Auto Mechanic Garage. All rights reserved.</p>
+  </div>
+</footer>
+
+<a class="fab" href="https://wa.me/971559902147" target="_blank" rel="noopener"
+   data-aria-en="Chat with Super Rang on WhatsApp" data-aria-ar="تواصل مع سوبر رينج عبر واتساب"
+   aria-label="Chat with Super Rang on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 5.82 2.42 8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43l-.47-.01c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+</a>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  /* ---- language ---------------------------------------------------- */
+  function setLang(lang) {
+    root.lang = lang;
+    root.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    root.classList.toggle('ar', lang === 'ar');
+
+    var nodes = document.querySelectorAll('[data-' + lang + ']');
+    for (var i = 0; i < nodes.length; i++) {
+      nodes[i].textContent = nodes[i].getAttribute('data-' + lang);
+    }
+    var labelled = document.querySelectorAll('[data-aria-' + lang + ']');
+    for (var j = 0; j < labelled.length; j++) {
+      labelled[j].setAttribute('aria-label', labelled[j].getAttribute('data-aria-' + lang));
+    }
+    try { localStorage.setItem('sr-lang', lang); } catch (e) {}
+  }
+
+  document.getElementById('langBtn').addEventListener('click', function () {
+    setLang(root.lang === 'ar' ? 'en' : 'ar');
+  });
+
+  /* The head script already set lang/dir. Swap the text to match. */
+  setLang(root.lang === 'ar' ? 'ar' : 'en');
+
+  /* ---- mobile nav -------------------------------------------------- */
+  var menuBtn = document.getElementById('menuBtn');
+  var nav = document.getElementById('siteNav');
+
+  function closeNav() {
+    nav.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  menuBtn.addEventListener('click', function () {
+    var open = nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  /* Tapping a section link should close the panel behind you. */
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest('a')) closeNav();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeNav();
+  });
+
+  /* ---- scroll reveal ------------------------------------------------ */
+  var reveals = document.querySelectorAll('.reveal');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    /* Reveal everything at once rather than leaving content invisible. */
+    for (var k = 0; k < reveals.length; k++) reveals[k].classList.add('in');
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);   /* reveal once, never reverse */
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+
+    for (var m = 0; m < reveals.length; m++) io.observe(reveals[m]);
+  }
+})();
+</script>
+
+</body>
+</html>
